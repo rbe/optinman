@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+              version="2.0">
+    <!--
+        Factory.
+    -->
+    <factory>
+        <exception-handler-factory>eu.artofcoding.optinman.web.OptinmanExceptionHandlerFactory</exception-handler-factory>
+    </factory>
+    <!--
+        Converter.
+    <converter>
+        <description>A Converter for phone number</description>
+        <converter-id>templateTypesConverter</converter-id>
+        <converter-class>eu.artofcoding.optinman.web.SelectItemConverter</converter-class>
+    </converter>
+    -->
+    <!--
+        Managed Beans.
+    -->
+    <!-- dashboardBean -->
+    <managed-bean>
+        <managed-bean-name>dashboardBean</managed-bean-name>
+        <managed-bean-class>eu.artofcoding.optinman.web.DashboardBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- fileUploadBean -->
+    <managed-bean>
+        <managed-bean-name>fileUploadBean</managed-bean-name>
+        <managed-bean-class>eu.artofcoding.optinman.web.FileUploadBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <!-- customerBean -->
+    <managed-bean>
+        <display-name>A customer</display-name>
+        <managed-bean-name>customerBean</managed-bean-name>
+        <managed-bean-class>eu.artofcoding.optinman.web.person.CustomerBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <!-- salutation -->
+        <managed-property>
+            <property-name>salutation</property-name>
+            <map-entries>
+                <key-class>java.lang.String</key-class>
+                <value-class>java.lang.String</value-class>
+                <map-entry>
+                    <key>Herr</key>
+                    <value>Herr</value>
+                </map-entry>
+                <map-entry>
+                    <key>Frau</key>
+                    <value>Frau</value>
+                </map-entry>
+            </map-entries>
+        </managed-property>
+    </managed-bean>
+    <!-- acquiringprofileBean -->
+    <managed-bean>
+        <display-name>An acquiring profile (e.g. an agent)</display-name>
+        <managed-bean-name>acquiringprofileBean</managed-bean-name>
+        <managed-bean-class>eu.artofcoding.optinman.web.person.AcquiringprofileBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- acquisitionsourceBean -->
+    <managed-bean>
+        <display-name>An acquisition source (e.g. a web platform)</display-name>
+        <managed-bean-name>acquisitionsourceBean</managed-bean-name>
+        <managed-bean-class>eu.artofcoding.optinman.web.person.AcquisitionsourceBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- templateBean -->
+    <managed-bean>
+        <display-name>A template</display-name>
+        <managed-bean-name>templateBean</managed-bean-name>
+        <managed-bean-class>eu.artofcoding.optinman.web.person.TemplateBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <!-- templateTypes -->
+        <managed-property>
+            <property-name>templateTypes</property-name>
+            <map-entries>
+                <key-class>java.lang.String</key-class>
+                <value-class>java.lang.String</value-class>
+                <map-entry>
+                    <key>null</key>
+                    <value>keiner</value>
+                </map-entry>
+                <map-entry>
+                    <key>freemarker</key>
+                    <value>freemarker.org</value>
+                </map-entry>
+            </map-entries>
+        </managed-property>
+    </managed-bean>
+    <!--
+        Application.
+    -->
+    <application>
+        <!--
+            Multilanguage.
+        -->
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>de</supported-locale>
+        </locale-config>
+        <!-- Resource bundle for messages at login page -->
+        <resource-bundle>
+            <base-name>eu.artofcoding.optinman.web.login</base-name>
+            <var>loginmsgs</var>
+        </resource-bundle>
+        <!-- Resource bundle for messages: menu -->
+        <resource-bundle>
+            <base-name>eu.artofcoding.optinman.web.menu</base-name>
+            <var>menumsg</var>
+        </resource-bundle>
+        <!-- Resource bundle for messages for persons/users/customers -->
+        <resource-bundle>
+            <base-name>eu.artofcoding.optinman.web.person</base-name>
+            <var>personmsg</var>
+        </resource-bundle>
+        <!-- Resource bundle for messages for templates -->
+        <resource-bundle>
+            <base-name>eu.artofcoding.optinman.web.template</base-name>
+            <var>templatemsg</var>
+        </resource-bundle>
+    </application>
+</faces-config>

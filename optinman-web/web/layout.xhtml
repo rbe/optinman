@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Optin Manager</title>
+    <style type="text/css">
+        .ui-widget {
+            font-size: 0.7em;
+        }
+    </style>
+</h:head>
+<h:body>
+
+    <f:view locale="#{language.localeCode}"/>
+
+    <h:form id="menuForm">
+
+        <h:panelGrid columns="1">
+
+            <p:megaMenu id="menu">
+                <p:submenu label="#{menumsg.file}" icon="ui-icon-document">
+                    <!-- Persons -->
+                    <p:column>
+                        <p:submenu label="Admin">
+                            <p:menuitem value="Login" url="/admin/index.xhtml"/>
+                        </p:submenu>
+                    </p:column>
+                    <!-- Settings -->
+                    <p:column>
+                        <p:submenu label="#{menumsg.settings}">
+                            <p:menuitem>
+                                #{menumsg.language}:
+                                <h:selectOneMenu onchange="submit()" value="#{language.localeCode}" valueChangeListener="#{language.countryLocaleCodeChanged}">
+                                    <f:selectItems value="#{language.countries}"/>
+                                </h:selectOneMenu>
+                            </p:menuitem>
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+            </p:megaMenu>
+
+        </h:panelGrid>
+
+    </h:form>
+
+    <p:spacer height="15"/>
+
+    <ui:insert name="content">
+    </ui:insert>
+
+</h:body>
+</html>

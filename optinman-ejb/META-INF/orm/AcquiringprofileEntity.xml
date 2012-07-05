@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+    <entity class="eu.artofcoding.optinman.entity.AcquiringprofileEntity">
+        <table name="acquiringprofile" schema="" catalog="optinman"/>
+        <named-query name="Acquiringprofile.findByName">
+            <query>SELECT e FROM AcquiringprofileEntity e WHERE e.nickname LIKE :name</query>
+        </named-query>
+        <pre-persist method-name="updateLastModified"/>
+        <pre-update method-name="updateLastModified"/>
+        <attributes>
+            <id name="id">
+                <column name="id" nullable="false" length="10"/>
+                <generated-value strategy="AUTO"/>
+            </id>
+            <basic name="emailAddress">
+                <column name="email_address" length="100"/>
+            </basic>
+            <basic name="firstname">
+                <column name="firstname" length="20"/>
+            </basic>
+            <basic name="nickname">
+                <column name="nickname" length="50"/>
+            </basic>
+            <basic name="notes">
+                <column name="notes" length="2147483647"/>
+            </basic>
+            <basic name="salutation">
+                <column name="salutation" length="20"/>
+            </basic>
+            <basic name="surname">
+                <column name="surname" length="50"/>
+            </basic>
+            <basic name="mailPassword">
+                <column name="mail_password" length="50"/>
+            </basic>
+            <basic name="mailServer">
+                <column name="mail_server" length="100"/>
+            </basic>
+            <basic name="mailServerPort">
+                <column name="mail_server_port" length="3"/>
+            </basic>
+            <basic name="mailServerProtocol">
+                <column name="mail_server_protocol" length="10"/>
+            </basic>
+            <basic name="mailUsername">
+                <column name="mail_username" length="50"/>
+            </basic>
+            <basic name="lastModified">
+                <column name="last_modified" nullable="false" length="20"/>
+                <temporal>TIMESTAMP</temporal>
+            </basic>
+            <version name="version">
+                <column name="version" length="10"/>
+            </version>
+            <one-to-many name="photosById" mapped-by="acquiringprofileByAcquiringprofileId"
+                         target-entity="eu.artofcoding.optinman.entity.AcquiringprofilePhotoEntity"/>
+        </attributes>
+    </entity>
+</entity-mappings>

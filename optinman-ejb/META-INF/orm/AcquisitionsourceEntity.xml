@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 version="2.0">
+    <entity class="eu.artofcoding.optinman.entity.AcquisitionsourceEntity">
+        <table name="acquisitionsource" schema="" catalog="optinman"/>
+        <named-query name="Acquisitionsource.findByName">
+            <query>SELECT e FROM AcquisitionsourceEntity e WHERE e.acquisitionsourceName LIKE :name</query>
+        </named-query>
+        <pre-persist method-name="updateLastModified"/>
+        <pre-update method-name="updateLastModified"/>
+        <attributes>
+            <id name="id">
+                <column name="id" nullable="false" length="10"/>
+                <generated-value strategy="AUTO"/>
+            </id>
+            <basic name="acquisitionsourceName">
+                <column name="acquisitionsource_name" nullable="false" unique="true" length="100"/>
+            </basic>
+            <basic name="notes">
+                <column name="notes" nullable="true" length="16777215"/>
+            </basic>
+            <basic name="lastModified">
+                <column name="last_modified" nullable="false" length="20"/>
+                <temporal>TIMESTAMP</temporal>
+            </basic>
+            <version name="version">
+                <column name="version" length="10"/>
+            </version>
+        </attributes>
+    </entity>
+</entity-mappings>

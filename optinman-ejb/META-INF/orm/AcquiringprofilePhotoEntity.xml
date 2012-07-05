@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 version="2.0">
+    <entity class="eu.artofcoding.optinman.entity.AcquiringprofilePhotoEntity">
+        <table name="acquiringprofile_photo" schema="" catalog="optinman"/>
+        <pre-persist method-name="updateLastModified"/>
+        <pre-update method-name="updateLastModified"/>
+        <attributes>
+            <id name="id">
+                <column name="id" nullable="false" length="10"/>
+                <generated-value strategy="AUTO"/>
+            </id>
+            <basic name="acquiringprofileId">
+                <column name="acquiringprofile_id" insertable="false" updatable="false" nullable="false" length="10"/>
+            </basic>
+            <basic name="content">
+                <column name="content" nullable="false" length="16777216"/>
+                <lob/>
+            </basic>
+            <basic name="contentType">
+                <column name="content_type" nullable="false" length="100"/>
+            </basic>
+            <basic name="originalFilename">
+                <column name="original_filename" nullable="true" length="255"/>
+            </basic>
+            <basic name="lastModified">
+                <column name="last_modified" nullable="false" length="20"/>
+                <temporal>TIMESTAMP</temporal>
+            </basic>
+            <version name="version">
+                <column name="version" length="10"/>
+            </version>
+            <many-to-one name="acquiringprofileByAcquiringprofileId" optional="true"
+                         target-entity="eu.artofcoding.optinman.entity.AcquiringprofileEntity">
+                <join-column name="acquiringprofile_id" nullable="false" referenced-column-name="id"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+</entity-mappings>

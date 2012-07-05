@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewParam name="id" value="#{acquisitionsourceBean.idFromRequest}"/>
+    <f:event type="preRenderView" listener="#{acquisitionsourceBean.preRenderView}"/>
+</f:metadata>
+
+<ui:composition template="layout.xhtml">
+
+    <ui:define name="breadcrumb">
+
+        <p:breadCrumb>
+            <p:menuitem value="Main Page" url="index.xhtml"/>
+            <p:menuitem value="Acquisition Source" url="show_acquisitionsource.xhtml"/>
+            <p:menuitem rendered="#{not empty acquisitionsourceBean.entity.id}" value="#{acquisitionsourceBean.entity.acquisitionsourceName}" url="#{acquisitionsourceBean.directURL}"/>
+            <p:menuitem rendered="#{empty acquisitionsourceBean.entity.id}" value="Create new" url="edit_acquisitionsource.xhtml?id=0"/>
+        </p:breadCrumb>
+
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:form id="acquisitionsourceForm" accept-charset="utf-8">
+
+            <p:panelGrid style="width: 100%">
+
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="3">#{menumsg.acquisitionsource}</p:column>
+                    </p:row>
+                </f:facet>
+
+                <p:row>
+                    <p:column style="width: 200px">
+                        <p:outputLabel for="acquisitionsourceName" value="#{personmsg.source_of_acquisition}"/>
+                    </p:column>
+                    <p:column colspan="2">
+                        <p:inputText id="acquisitionsourceName"
+                                        size="60"
+                                        value="#{acquisitionsourceBean.entity.acquisitionsourceName}" autocomplete="off"
+                                        required="true" requiredMessage="#{personmsg.source_of_acquisition_required}">
+                            <p:ajax update=":acquisitionsourceForm:acquisitionsourceNameMsg" event="keyup"/>
+                        </p:inputText>
+                        <p:message id="acquisitionsourceNameMsg" for="acquisitionsourceName"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column>
+                        <p:outputLabel for="notes">#{personmsg.notes}</p:outputLabel>
+                    </p:column>
+                    <p:column colspan="2">
+                        <!-- controls="bold italic underline strikethrough subscript superscript font size style color highlight bullets numbering alignleft center alignright justify undo redo rule image link unlink cut copy paste pastetext print source outdent indent -->
+                        <p:editor id="notes"
+                                  width="1024"
+                                  value="#{acquisitionsourceBean.entity.notes}">
+                        </p:editor>
+                        <p:message for="notes"/>
+                    </p:column>
+                </p:row>
+
+                <f:facet name="footer">
+                    <p:row>
+                        <p:column>
+                            <p:commandButton icon="ui-icon-check"
+                                             value="#{personmsg.create_acquisitionsource}"
+                                             action="#{acquisitionsourceBean.userActionPersist}"
+                                             ajax="false"/>
+                        </p:column>
+                        <p:column colspan="2">
+                            <p:message id="acquisitionsourceFormMsg" for="acquisitionsourceForm" showSummary="true" showDetail="true"/>
+                        </p:column>
+                    </p:row>
+                </f:facet>
+
+            </p:panelGrid>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+</html>

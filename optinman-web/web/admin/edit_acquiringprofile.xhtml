@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewParam name="id" value="#{acquiringprofileBean.idFromRequest}"/>
+    <f:event type="preRenderView" listener="#{acquiringprofileBean.preRenderView}"/>
+</f:metadata>
+
+<ui:composition template="layout.xhtml">
+
+    <ui:define name="breadcrumb">
+
+        <p:breadCrumb>
+            <p:menuitem value="Main Page" url="index.xhtml"/>
+            <p:menuitem value="Acquiring profile" url="show_acquiringprofile.xhtml"/>
+            <p:menuitem rendered="#{not empty acquiringprofileBean.entity.id}" value="#{acquiringprofileBean.shortname}" url="#{acquiringprofileBean.directURL}"/>
+            <p:menuitem rendered="#{empty acquiringprofileBean.entity.id}" value="Create new" url="edit_acquiringprofile.xhtml?id=0"/>
+        </p:breadCrumb>
+
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:form id="acquiringprofileForm" accept-charset="utf-8" enctype="multipart/form-data">
+
+            <p:panelGrid style="width: 100%">
+
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="3">#{personmsg.registration_header}</p:column>
+                    </p:row>
+                </f:facet>
+
+                <p:row>
+                    <p:column style="width: 200px">
+                        <p:outputLabel for="nickname">#{personmsg.nickname}</p:outputLabel>
+                    </p:column>
+                    <p:column colspan="2">
+                        <p:inputText id="nickname"
+                                     value="#{acquiringprofileBean.entity.nickname}" autocomplete="off"
+                                     size="60"
+                                     required="true" requiredMessage="#{personmsg.nickname_required}">
+                            <p:ajax update=":acquiringprofileForm:nicknameMsg" event="keyup"/>
+                        </p:inputText>
+                        <p:message id="nicknameMsg" for="nickname"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column>
+                        <p:outputLabel for="firstname">#{personmsg.firstname}</p:outputLabel>
+                    </p:column>
+                    <p:column colspan="2">
+                        <p:inputText id="firstname"
+                                     value="#{acquiringprofileBean.entity.firstname}" autocomplete="off"
+                                     size="60"
+                                     required="true" requiredMessage="#{personmsg.firstname_required}">
+                            <p:ajax update=":acquiringprofileForm:firstnameMsg" event="keyup"/>
+                        </p:inputText>
+                        <p:message id="firstnameMsg" for="firstname"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column>
+                        <p:outputLabel for="surname">#{personmsg.surname}</p:outputLabel>
+                    </p:column>
+                    <p:column colspan="2">
+                        <p:inputText id="surname"
+                                     value="#{acquiringprofileBean.entity.surname}" autocomplete="off"
+                                     size="60">
+                            <p:ajax update=":acquiringprofileForm:surnameMsg" event="keyup"/>
+                        </p:inputText>
+                        <p:message id="surnameMsg" for="surname"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column>
+                        <p:outputLabel for="email">#{personmsg.emailaddress}</p:outputLabel>
+                    </p:column>
+                    <p:column colspan="2">
+                        <p:inputText id="email"
+                                     value="#{acquiringprofileBean.entity.emailAddress}" autocomplete="off"
+                                     size="60"
+                                     required="true" requiredMessage="#{personmsg.emailaddress_required}">
+                            <p:ajax update=":acquiringprofileForm:emailAddressMsg"/>
+                        </p:inputText>
+                        <p:message id="emailAddressMsg" for="email"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column>
+                        <p:outputLabel for="photo">#{personmsg.photo}</p:outputLabel>
+                    </p:column>
+                    <p:column>
+                        <p:fileUpload id="photo"
+                                      fileUploadListener="#{fileUploadBean.handleFileUpload}"
+                                      mode="advanced"
+                                      multiple="true"
+                                      update="photoMsg"
+                                      sizeLimit="100000"
+                                      allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                        <p:message id="photoMsg" for="photo" showSummary="true" showDetail="true"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column>
+                        <p:outputLabel for="notes">#{personmsg.notes}</p:outputLabel>
+                    </p:column>
+                    <p:column colspan="2">
+                        <!-- controls="bold italic underline strikethrough subscript superscript font size style color highlight bullets numbering alignleft center alignright justify undo redo rule image link unlink cut copy paste pastetext print source outdent indent -->
+                        <p:editor id="notes"
+                                  width="1024"
+                                  value="#{acquiringprofileBean.entity.notes}">
+                        </p:editor>
+                        <p:message for="notes"/>
+                    </p:column>
+                </p:row>
+
+                <f:facet name="footer">
+                    <p:row>
+                        <p:column>
+                            <p:commandButton icon="ui-icon-check"
+                                             value="#{personmsg.create_person}"
+                                             action="#{acquiringprofileBean.userActionPersist}"
+                                             update=":acquiringprofileForm"/>
+                        </p:column>
+                        <p:column colspan="2">
+                            <p:message id="acquiringprofileFormMsg" for="acquiringprofileForm" showSummary="true" showDetail="true"/>
+                        </p:column>
+                    </p:row>
+                </f:facet>
+
+            </p:panelGrid>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="layout.xhtml">
+
+    <ui:define name="breadcrumb">
+
+        <p:breadCrumb>
+            <p:menuitem value="Main Page" url="index.xhtml"/>
+            <p:menuitem value="Acquisition Source" url="show_acquisitionsource.xhtml"/>
+        </p:breadCrumb>
+
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:form id="acquisitionsourceTableForm">
+
+            <p:dataTable id="acquisitionsourceTable"
+                         var="a" value="#{acquisitionsourceBean.primefacesLazyDataModel}" rowKey="#{a.id}"
+                         paginator="true" rows="50" rowsPerPageTemplate="10,25,50,75,100"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         selectionMode="single" selection="#{acquisitionsourceBean.entity}"
+                         lazy="true">
+
+                <p:column id="acquisitionsource" headerText="#{menumsg.acquisitionsource}" sortBy="#{a.acquisitionsourceName}" filterBy="#{a.acquisitionsourceName}">
+                    #{a.acquisitionsourceName}
+                </p:column>
+
+                <p:column style="width: 10%">
+                    <p:commandButton id="selectButton"
+                                     icon="ui-icon-search" title="View"
+                                     action="edit_acquisitionsource.xhtml">
+                        <f:setPropertyActionListener value="#{c}" target="#{acquisitionsourceBean.entity}"/>
+                    </p:commandButton>
+                    <p:splitButton id="splitButton"
+                                   value="Edit" icon="ui-icon-disk"
+                                   action="edit_acquisitionsource.xhtml">
+                        <f:setPropertyActionListener value="#{c}" target="#{acquisitionsourceBean.entity}"/>
+                        <!--
+                        <p:menuitem id="updateButton"
+                                    icon="ui-icon-arrowrefresh-1-w" value="Update"
+                                    action="edit_acquisitionsource.xhtml">
+                        </p:menuitem>
+                        -->
+                    </p:splitButton>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton id="viewButton"
+                                     icon="ui-icon-search" value="View"
+                                     action="edit_acquisitionsource.xhtml?faces-redirect=true"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+</html>

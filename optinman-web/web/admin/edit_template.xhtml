@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<!--
+<f:metadata>
+    <f:viewParam name="id" value="#{templateBean.idFromRequest}"/>
+    <f:event type="preRenderView" listener="#{templateBean.preRenderView}"/>
+</f:metadata>
+-->
+<ui:composition template="layout.xhtml">
+
+    <ui:define id="breadcrumb" name="breadcrumb">
+
+        <p:breadCrumb>
+            <p:menuitem value="Main Page" url="index.xhtml"/>
+            <p:menuitem value="Template" url="show_template.xhtml"/>
+            <p:menuitem rendered="#{not empty templateBean.entity.id}" value="#{templateBean.entity.templateName}" url="#{templateBean.directURL}"/>
+            <p:menuitem rendered="#{empty templateBean.entity.id}" value="Create new" url="edit_template.xhtml"/>
+        </p:breadCrumb>
+
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:form id="templateForm" accept-charset="utf-8">
+
+            <p:panelGrid style="width: 100%">
+
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="3">#{templatemsg.registration_header}</p:column>
+                    </p:row>
+                </f:facet>
+
+                <p:row>
+                    <p:column style="width: 200px">
+                        <p:outputLabel for="templateName" value="#{templatemsg.template_name}"/>
+                    </p:column>
+                    <p:column colspan="2">
+                        <p:inputText id="templateName"
+                                     size="60" dropdown="true"
+                                     value="#{templateBean.entity.templateName}" autocomplete="off"
+                                     required="true" requiredMessage="#{templatemsg.name_required}">
+                            <p:ajax update=":templateForm:templateNameMsg" event="keyup"/>
+                        </p:inputText>
+                        <p:message id="templateNameMsg" for="templateName"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column style="width: 200px">
+                        <p:outputLabel for="templateType" value="#{templatemsg.template_type}"/>
+                    </p:column>
+                    <p:column colspan="2">
+                        <p:selectOneButton id="templateType"
+                                           value="#{templateBean.entity.templateType}">
+                            <f:selectItems value="#{templateBean.templateTypesAsSelectItems}"/>
+                        </p:selectOneButton>
+                        <p:message id="templateTypeMsg" for="templateType"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column>
+                        <p:outputLabel for="content">#{templatemsg.content}</p:outputLabel>
+                    </p:column>
+                    <p:column colspan="2">
+                        <!-- controls="bold italic underline strikethrough subscript superscript font size style color highlight bullets numbering alignleft center alignright justify undo redo rule image link unlink cut copy paste pastetext print source outdent indent -->
+                        <p:editor id="content"
+                                  style="width: 100%" width="800" height="600"
+                                  value="#{templateBean.entity.content}"
+                                  required="true" requiredMessage="Keine Arme, keine Kekse!">
+                        </p:editor>
+                        <p:message for="content"/>
+                    </p:column>
+                </p:row>
+
+                <f:facet name="footer">
+                    <p:row>
+                        <p:column>
+                            <p:commandButton id="createTemplateButton"
+                                             icon="ui-icon-check"
+                                             value="#{templatemsg.create_template}"
+                                             action="#{templateBean.userActionPersist}"
+                                             ajax="false"/>
+                        </p:column>
+                        <p:column colspan="2">
+                            <p:message id="templateFormMsg" for="templateForm" showSummary="true" showDetail="true"/>
+                        </p:column>
+                    </p:row>
+                </f:facet>
+
+            </p:panelGrid>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+</html>

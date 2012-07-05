@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             version="2.0">
+    <persistence-unit name="optinman-PU">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>java:jboss/datasources/optinmanDatasource</jta-data-source>
+        <mapping-file>META-INF/orm/CompanyEntity.xml</mapping-file>
+        <mapping-file>META-INF/orm/EmailEntity.xml</mapping-file>
+        <mapping-file>META-INF/orm/PersonEntity.xml</mapping-file>
+        <mapping-file>META-INF/orm/PersonRoleEntity.xml</mapping-file>
+        <mapping-file>META-INF/orm/AcquiringprofileEntity.xml</mapping-file>
+        <mapping-file>META-INF/orm/AcquiringprofilePhotoEntity.xml</mapping-file>
+        <mapping-file>META-INF/orm/TemplateEntity.xml</mapping-file>
+        <mapping-file>META-INF/orm/AcquisitionsourceEntity.xml</mapping-file>
+        <properties>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>

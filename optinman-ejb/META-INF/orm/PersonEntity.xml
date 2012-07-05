@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 version="2.0">
+    <entity class="eu.artofcoding.optinman.entity.PersonEntity">
+        <table name="person" schema="" catalog="optinman"/>
+        <named-query name="Person.findByName">
+            <query>SELECT p FROM PersonEntity p WHERE p.nickname LIKE :name OR p.firstname LIKE :name OR p.surname LIKE :name</query>
+        </named-query>
+        <named-query name="Person.findByNickname">
+            <query>SELECT p FROM PersonEntity p WHERE p.nickname LIKE :nickname</query>
+        </named-query>
+        <pre-persist method-name="updateLastModified"/>
+        <pre-update method-name="updateLastModified"/>
+        <attributes>
+            <id name="id">
+                <column name="id" nullable="false" length="10"/>
+                <generated-value strategy="AUTO"/>
+            </id>
+            <basic name="sourceOfAcquisition">
+                <column name="sourceOfAcquisition" length="50"/>
+            </basic>
+            <basic name="acquiringprofile">
+                <column name="acquiringprofile" length="50"/>
+            </basic>
+            <basic name="nickname">
+                <column name="nickname" length="50"/>
+            </basic>
+            <basic name="age">
+                <column name="age" length="10"/>
+            </basic>
+            <basic name="emailAddress">
+                <column name="email_address" length="100" unique="true"/>
+            </basic>
+            <basic name="salutation">
+                <column name="salutation" length="20"/>
+            </basic>
+            <basic name="firstname">
+                <column name="firstname" length="20"/>
+            </basic>
+            <basic name="surname">
+                <column name="surname" length="50"/>
+            </basic>
+            <basic name="address">
+                <column name="address" length="100"/>
+            </basic>
+            <basic name="zipcode">
+                <column name="zipcode" length="20"/>
+            </basic>
+            <basic name="city">
+                <column name="city" length="100"/>
+            </basic>
+            <basic name="country">
+                <column name="country" length="100"/>
+            </basic>
+            <basic name="notes">
+                <column name="notes" length="2147483647"/>
+                <lob/>
+            </basic>
+            <basic name="lastModified">
+                <column name="last_modified" nullable="false" length="20"/>
+                <temporal>TIMESTAMP</temporal>
+            </basic>
+            <version name="version">
+                <column name="version" length="10"/>
+            </version>
+        </attributes>
+    </entity>
+</entity-mappings>

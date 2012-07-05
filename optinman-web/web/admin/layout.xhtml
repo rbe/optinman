@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Optin Manager</title>
+    <style type="text/css">
+        .ui-widget {
+            font-size: 0.7em;
+        }
+    </style>
+</h:head>
+<h:body>
+
+    <f:view locale="#{language.localeCode}"/>
+
+    <h:form id="menuForm">
+
+        <h:panelGrid columns="1">
+
+            <p:megaMenu id="menu">
+                <p:submenu label="#{menumsg.file}" icon="ui-icon-document">
+                    <!-- Persons -->
+                    <p:column>
+                        <p:submenu label="#{menumsg.persons}">
+                            <p:menuitem value="#{menumsg.show_customer}" url="/admin/show_customer.xhtml"/>
+                            <p:menuitem value="#{menumsg.create_customer}" url="/admin/edit_customer.xhtml?id=0"/>
+                        </p:submenu>
+                    </p:column>
+                    <!-- Data Maintenance -->
+                    <p:column>
+                        <p:submenu label="#{menumsg.acquiringprofiles}">
+                            <p:menuitem value="#{menumsg.show_acquiringprofile}" url="/admin/show_acquiringprofile.xhtml"/>
+                            <p:menuitem value="#{menumsg.create_acquiringprofile}" url="/admin/edit_acquiringprofile.xhtml"/>
+                        </p:submenu>
+                        <p:submenu label="#{menumsg.acquisitionsource}">
+                            <p:menuitem value="#{menumsg.show_acquisitionsource}" url="/admin/show_acquisitionsource.xhtml"/>
+                            <p:menuitem value="#{menumsg.create_acquisitionsource}" url="/admin/edit_acquisitionsource.xhtml"/>
+                        </p:submenu>
+                        <p:submenu label="#{menumsg.template}">
+                            <p:menuitem value="#{menumsg.show_template}" url="/admin/show_template.xhtml"/>
+                            <p:menuitem value="#{menumsg.create_template}" url="/admin/edit_template.xhtml"/>
+                        </p:submenu>
+                    </p:column>
+                    <!-- Settings -->
+                    <p:column>
+                        <p:submenu label="#{menumsg.settings}">
+                            <p:menuitem>
+                                #{menumsg.language}:
+                                <h:selectOneMenu onchange="submit()" value="#{language.localeCode}" valueChangeListener="#{language.countryLocaleCodeChanged}">
+                                    <f:selectItems value="#{language.countries}"/>
+                                </h:selectOneMenu>
+                            </p:menuitem>
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+            </p:megaMenu>
+
+        </h:panelGrid>
+
+    </h:form>
+
+    <p:spacer height="15"/>
+
+    <ui:insert name="breadcrumb">
+    </ui:insert>
+
+    <h:form id="globalMessagesForm">
+        <p:messages globalOnly="true" showDetail="true"/>
+    </h:form>
+
+    <p:separator/>
+    <p:spacer height="15"/>
+
+    <ui:insert name="content">
+    </ui:insert>
+
+</h:body>
+</html>
