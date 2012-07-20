@@ -27,7 +27,7 @@ public class FileUploadBean {
 
     @EJB
     private AcquiringprofilePhotoDAORemote acquiringprofilePhotoDAO;
-    
+
     /**
      * @param event
      */
