@@ -4,7 +4,7 @@
               xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
               version="2.0">
     <!--
-        Factory.
+        Factories.
     -->
     <factory>
         <exception-handler-factory>eu.artofcoding.optinman.web.OptinmanExceptionHandlerFactory</exception-handler-factory>
@@ -20,6 +20,18 @@
     <!--
         Managed Beans.
     -->
+    <!-- languageBean -->
+    <managed-bean>
+        <managed-bean-name>language</managed-bean-name>
+        <managed-bean-class>eu.artofcoding.optinman.web.LanguageBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- menuBean -->
+    <managed-bean>
+        <managed-bean-name>menuBean</managed-bean-name>
+        <managed-bean-class>eu.artofcoding.optinman.web.primefaces.MenuBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
     <!-- dashboardBean -->
     <managed-bean>
         <managed-bean-name>dashboardBean</managed-bean-name>
