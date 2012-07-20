@@ -8,7 +8,7 @@
  *
  * rbe, 7/3/12 6:39 PM
  */
-package eu.artofcoding.optinman.web;
+package eu.artofcoding.optinman.web.primefaces;
 
 import eu.artofcoding.optinman.entity.GenericDAORemote;
 import eu.artofcoding.optinman.entity.GenericEntity;

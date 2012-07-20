@@ -8,7 +8,7 @@
  *
  * rbe, 6/29/12 7:17 PM
  */
-package eu.artofcoding.optinman.email;
+package eu.artofcoding.optinman.template;
 
 import eu.artofcoding.optinman.entity.TemplateEntity;
 import eu.artofcoding.optinman.template.TemplateDAORemote;
