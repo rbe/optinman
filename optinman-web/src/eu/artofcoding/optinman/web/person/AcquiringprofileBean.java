@@ -13,7 +13,7 @@ package eu.artofcoding.optinman.web.person;
 import eu.artofcoding.optinman.entity.AcquiringprofileEntity;
 import eu.artofcoding.optinman.entity.GenericDAOResult;
 import eu.artofcoding.optinman.user.AcquiringprofileDAORemote;
-import eu.artofcoding.optinman.web.AbstractCrudBean;
+import eu.artofcoding.optinman.web.primefaces.AbstractCrudBean;
 import eu.artofcoding.optinman.web.FacesHelper;
 
 import javax.annotation.PostConstruct;

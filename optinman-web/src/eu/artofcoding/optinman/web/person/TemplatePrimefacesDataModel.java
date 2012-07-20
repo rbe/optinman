@@ -12,7 +12,7 @@ package eu.artofcoding.optinman.web.person;
 
 import eu.artofcoding.optinman.entity.TemplateEntity;
 import eu.artofcoding.optinman.template.TemplateDAORemote;
-import eu.artofcoding.optinman.web.AbstractPrimefacesLazyDataModel;
+import eu.artofcoding.optinman.web.primefaces.AbstractPrimefacesLazyDataModel;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -16,7 +16,7 @@ import eu.artofcoding.optinman.entity.PersonEntity;
 import eu.artofcoding.optinman.user.AcquiringprofileDAORemote;
 import eu.artofcoding.optinman.user.AcquisitionsourceDAORemote;
 import eu.artofcoding.optinman.user.PersonDAORemote;
-import eu.artofcoding.optinman.web.AbstractCrudBean;
+import eu.artofcoding.optinman.web.primefaces.AbstractCrudBean;
 import eu.artofcoding.optinman.web.FacesHelper;
 
 import javax.annotation.PostConstruct;
