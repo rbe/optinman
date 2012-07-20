@@ -58,7 +58,9 @@ public class CustomerBean extends AbstractCrudBean<PersonEntity> {
     @Override
     public void preRenderView() throws IllegalAccessException, InstantiationException {
         super.preRenderView();
-        entity.setSalutation("Herr");
+        if (null == entity) {
+            setEmptyPerson(null);
+        }
     }
 
     public void setSalutation(Map<String, String> salutation) {
@@ -104,13 +106,7 @@ public class CustomerBean extends AbstractCrudBean<PersonEntity> {
                             "eu.artofcoding.optinman.web.person", "person_created_summary", "person_created_detail",
                             personName);
                     // Reset entity if it has an ID, so we consider it was saved (before)
-                    if (null != entity && entityHasId()) {
-                        PersonEntity person2 = new PersonEntity();
-                        person2.setAcquiringprofile(entity.getAcquiringprofile());
-                        person2.setSourceOfAcquisition(entity.getSourceOfAcquisition());
-                        person2.setSalutation("Herr");
-                        entity = person2;
-                    }
+                    setEmptyPerson(entity);
                     return navigate("edit");
                 } else {
                     return navigate("show");
@@ -120,6 +116,16 @@ public class CustomerBean extends AbstractCrudBean<PersonEntity> {
             }
         } catch (Exception e) {
             throw new FacesException(e);
+        }
+    }
+
+    private void setEmptyPerson(PersonEntity entity) {
+        if (null != entity && entityHasId()) {
+            PersonEntity person2 = new PersonEntity();
+            person2.setAcquiringprofile(entity.getAcquiringprofile());
+            person2.setSourceOfAcquisition(entity.getSourceOfAcquisition());
+            person2.setSalutation("Herr");
+            this.entity = person2;
         }
     }
 
@@ -140,5 +146,5 @@ public class CustomerBean extends AbstractCrudBean<PersonEntity> {
     public void sendWelcomeEmail() {
         System.out.println("YEE-HA.");
     }
-    
+
 }
