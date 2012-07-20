@@ -10,6 +10,7 @@
  */
 package eu.artofcoding.optinman.email;
 
+import eu.artofcoding.optinman.template.DatabaseTemplateLoader;
 import eu.artofcoding.optinman.template.TemplateDAORemote;
 import eu.artofcoding.optinman.template.TemplateProcessor;
 import freemarker.template.TemplateException;
