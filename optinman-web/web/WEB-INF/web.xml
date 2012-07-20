@@ -34,6 +34,16 @@
         <location>/webapp-error.xhtml</location>
     </error-page>
     -->
+    <!-- Encoding Filter -->
+    <filter>
+        <filter-name>Encoding Filter</filter-name>
+        <filter-class>eu.artofcoding.optinman.web.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Encoding Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- Primefaces Upload Filter -->
     <filter>
         <filter-name>PrimeFaces FileUpload Filter</filter-name>
         <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
