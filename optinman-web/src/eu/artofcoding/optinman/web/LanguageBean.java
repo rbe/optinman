@@ -10,8 +10,6 @@
  */
 package eu.artofcoding.optinman.web;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import java.io.Serializable;
@@ -20,8 +18,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-@ManagedBean(name = "language")
-@SessionScoped
 public class LanguageBean implements Serializable {
 
     /**
@@ -63,7 +59,7 @@ public class LanguageBean implements Serializable {
 
     /**
      * Set locale code.
-     * @param localeCode
+     * @param localeCode Set locale code by string, e.g. "de" or "de_DE".
      */
     public void setLocaleCode(String localeCode) {
         this.localeCode = localeCode;
@@ -71,7 +67,7 @@ public class LanguageBean implements Serializable {
 
     /**
      * Value change event listener.
-     * @param e
+     * @param e ValueChangeEvent
      */
     public void countryLocaleCodeChanged(ValueChangeEvent e) {
         String newLocaleValue = e.getNewValue().toString();
@@ -89,9 +85,9 @@ public class LanguageBean implements Serializable {
 
     /**
      * Get a localized message from a bundle.
-     * @param baseName
-     * @param locale
-     * @param key
+     * @param baseName Name of resource bundle.
+     * @param locale   Locale to lookup.
+     * @param key      Key for message.
      * @return String The message.
      */
     public String getMessage(String baseName, Locale locale, String key) {

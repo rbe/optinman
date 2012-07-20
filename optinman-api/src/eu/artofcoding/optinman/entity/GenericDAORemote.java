@@ -16,9 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * User: rbe
- * Date: 13.06.12
- * Time: 17:26
+ * 
  */
 @Remote
 public interface GenericDAORemote<T extends Serializable> {
