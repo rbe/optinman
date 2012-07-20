@@ -49,12 +49,12 @@
                     <p:commandButton id="selectButton"
                                      icon="ui-icon-search" title="View"
                                      action="edit_acquiringprofile.xhtml">
-                        <f:setPropertyActionListener value="#{c}" target="#{acquiringprofileBean.entity}"/>
+                        <f:setPropertyActionListener value="#{p}" target="#{acquiringprofileBean.entity}"/>
                     </p:commandButton>
                     <p:splitButton id="splitButton"
                                    value="Edit" icon="ui-icon-disk"
                                    action="edit_acquiringprofile.xhtml">
-                        <f:setPropertyActionListener value="#{c}" target="#{acquiringprofileBean.entity}"/>
+                        <f:setPropertyActionListener value="#{p}" target="#{acquiringprofileBean.entity}"/>
                         <!--
                         <p:menuitem id="updateButton"
                                     icon="ui-icon-arrowrefresh-1-w" value="Update"

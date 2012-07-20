@@ -37,12 +37,12 @@
                     <p:commandButton id="selectButton"
                                      icon="ui-icon-search" title="View"
                                      action="edit_acquisitionsource.xhtml">
-                        <f:setPropertyActionListener value="#{c}" target="#{acquisitionsourceBean.entity}"/>
+                        <f:setPropertyActionListener value="#{a}" target="#{acquisitionsourceBean.entity}"/>
                     </p:commandButton>
                     <p:splitButton id="splitButton"
                                    value="Edit" icon="ui-icon-disk"
                                    action="edit_acquisitionsource.xhtml">
-                        <f:setPropertyActionListener value="#{c}" target="#{acquisitionsourceBean.entity}"/>
+                        <f:setPropertyActionListener value="#{a}" target="#{acquisitionsourceBean.entity}"/>
                         <!--
                         <p:menuitem id="updateButton"
                                     icon="ui-icon-arrowrefresh-1-w" value="Update"
