@@ -1,4 +1,13 @@
+# IntelliJ #
+*.iml
+.idea/
+atlassian-ide-plugin.xml
+/lib/
+
+# Compiler #
 *.class
+out/
+target/
 
 # Package Files #
 *.jar
